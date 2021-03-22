@@ -1,6 +1,2 @@
-.App {
-  text-align: center;
-  h1 {
-    font-size: 2rem;
-  }
-}
+@import "Components/FilterableProductTable/ProductTable/ProductRow/ProductRow.scss";
+@import "Components/FilterableProductTable/ProductTable/ProductCategoryRow/ProductCategoryRow.scss"
