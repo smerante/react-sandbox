@@ -1,5 +1,6 @@
 import React from "react";
-import FilterableProductTable from "../Components/FilterableProductTable/FilterableProductTable";
+import FilterableProductTable, { Product } from "../Components/FilterableProductTable/FilterableProductTable";
+import axios, { AxiosResponse } from 'axios';
 
 export default class ProductTableDemo extends React.Component<any, any> {
 
@@ -15,12 +16,22 @@ export default class ProductTableDemo extends React.Component<any, any> {
 
     constructor(props: any) {
         super(props);
-        this.state = {};
+        this.state = {
+            products: this.mockDataCall
+        };
+    }
+
+    componentDidMount() {
+        axios.get('http://localhost:8080/products').then((res: AxiosResponse<Product[]>) => {
+            this.setState({
+                products: res.data
+            })
+        });
     }
 
     render() {
         return <div>
-            <FilterableProductTable products={this.mockDataCall}></FilterableProductTable>
+            <FilterableProductTable products={this.state.products}></FilterableProductTable>
         </div>
     }
 }
