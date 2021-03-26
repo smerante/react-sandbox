@@ -5,6 +5,7 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import AccessibilityDemo from "./Demos/AccessibilityDemo";
 import ProductTableDemo from "./ProductTableDemo/ProductTableDemo";
 
 export default class App extends React.Component {
@@ -18,6 +19,9 @@ export default class App extends React.Component {
                 <Link to="/">Home</Link>
               </li>
               <li>
+                <Link to="/axe">Accesibility</Link>
+              </li>
+              <li>
                 <Link to="/product-table-demo">Product Table Demo</Link>
               </li>
             </ul>
@@ -28,6 +32,9 @@ export default class App extends React.Component {
           <Switch>
             <Route path="/product-table-demo">
               <ProductTableDemo></ProductTableDemo>
+            </Route>
+            <Route path="/axe">
+              <AccessibilityDemo></AccessibilityDemo>
             </Route>
             <Route path="/">
               <Home />
