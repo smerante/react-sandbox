@@ -6,6 +6,7 @@ import {
   Link
 } from "react-router-dom";
 import AccessibilityDemo from "./Demos/AccessibilityDemo";
+import LazyLoading from "./Demos/LazyLoadingDemo";
 import ProductTableDemo from "./ProductTableDemo/ProductTableDemo";
 
 export default class App extends React.Component {
@@ -22,6 +23,9 @@ export default class App extends React.Component {
                 <Link to="/axe">Accesibility</Link>
               </li>
               <li>
+                <Link to="/lazy-loading">Lazy Loading</Link>
+              </li>
+              <li>
                 <Link to="/product-table-demo">Product Table Demo</Link>
               </li>
             </ul>
@@ -35,6 +39,9 @@ export default class App extends React.Component {
             </Route>
             <Route path="/axe">
               <AccessibilityDemo></AccessibilityDemo>
+            </Route>
+            <Route path="/lazy-loading">
+              <LazyLoading></LazyLoading>
             </Route>
             <Route path="/">
               <Home />
