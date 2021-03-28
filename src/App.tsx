@@ -6,8 +6,9 @@ import {
   Link
 } from "react-router-dom";
 import AccessibilityDemo from "./Demos/AccessibilityDemo";
-import { GlobalProviders, LanguageContext, ThemeContext } from "./Demos/ContextDemo";
+import GlobalProvider, { GlobalProviders, LanguageContext, ThemeContext } from "./Demos/ContextDemo";
 import ContextDemoComponent from "./Demos/ContextDemo/ContextDemoComponent";
+import ErrorBoundary from "./Demos/ErrorBoundary";
 import LazyLoading from "./Demos/LazyLoadingDemo";
 import ProductTableDemo from "./ProductTableDemo/ProductTableDemo";
 
@@ -49,6 +50,9 @@ export default class App extends React.Component<any, any> {
                 <Link to="/context">Context</Link>
               </li>
               <li>
+                <Link to="/error-demo">ErrorDemo</Link>
+              </li>
+              <li>
                 <Link to="/product-table-demo">Product Table Demo</Link>
               </li>
             </ul>
@@ -79,6 +83,20 @@ export default class App extends React.Component<any, any> {
               <p>Providers set from function</p>
               {GlobalProviders(<ContextDemoComponent updateProviders={this.updateProviders}>Providers not updated</ContextDemoComponent>)}
 
+              <p>Set providers from class</p>
+              <GlobalProvider>
+                <ContextDemoComponent updateProviders={this.updateProviders}>
+                  Providers update from state
+                  </ContextDemoComponent>
+              </GlobalProvider>
+
+            </Route>
+            <Route path="/error-demo">
+              test
+              <ErrorBoundary>
+                {{one: 'one', two: 'two', thre: 'three'}}
+                <ProductTableDemo></ProductTableDemo>
+              </ErrorBoundary>
             </Route>
             <Route path="/">
               <Home />

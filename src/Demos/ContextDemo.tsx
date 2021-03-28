@@ -13,3 +13,14 @@ export function GlobalProviders(children: any) {
         </ThemeContext.Provider>
     )
 }
+
+export default class GlobalProvider extends React.Component {
+
+    render() {
+        return <ThemeContext.Provider value="dark">
+            <LanguageContext.Provider value="en">
+                {this.props.children}
+            </LanguageContext.Provider>
+        </ThemeContext.Provider>
+    }
+}
