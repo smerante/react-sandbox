@@ -9,6 +9,7 @@ import AccessibilityDemo from "./Demos/AccessibilityDemo";
 import GlobalProvider, { GlobalProviders, LanguageContext, ThemeContext } from "./Demos/ContextDemo";
 import ContextDemoComponent from "./Demos/ContextDemo/ContextDemoComponent";
 import ErrorBoundary from "./Demos/ErrorBoundary";
+import HooksDemo from "./Demos/HooksDemo";
 import LazyLoading from "./Demos/LazyLoadingDemo";
 import ProductTableDemo from "./ProductTableDemo/ProductTableDemo";
 
@@ -55,6 +56,9 @@ export default class App extends React.Component<any, any> {
               <li>
                 <Link to="/product-table-demo">Product Table Demo</Link>
               </li>
+              <li>
+                <Link to="/hooks">Hooks</Link>
+              </li>
             </ul>
           </nav>
 
@@ -97,6 +101,9 @@ export default class App extends React.Component<any, any> {
                 {{one: 'one', two: 'two', thre: 'three'}}
                 <ProductTableDemo></ProductTableDemo>
               </ErrorBoundary>
+            </Route>
+            <Route path="/hooks">
+              <HooksDemo></HooksDemo>
             </Route>
             <Route path="/">
               <Home />
