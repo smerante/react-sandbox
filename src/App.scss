@@ -1,2 +1,8 @@
 @import "Components/FilterableProductTable/ProductTable/ProductRow/ProductRow.scss";
-@import "Components/FilterableProductTable/ProductTable/ProductCategoryRow/ProductCategoryRow.scss"
+@import "Components/FilterableProductTable/ProductTable/ProductCategoryRow/ProductCategoryRow.scss";
+
+.custom-button {
+    min-width: 128px;
+    height: 64px;
+    background-color: transparent;
+}

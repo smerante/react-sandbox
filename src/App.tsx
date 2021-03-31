@@ -9,27 +9,40 @@ import AccessibilityDemo from "./Demos/AccessibilityDemo";
 import GlobalProvider, { GlobalProviders, LanguageContext, ThemeContext } from "./Demos/ContextDemo";
 import ContextDemoComponent from "./Demos/ContextDemo/ContextDemoComponent";
 import ErrorBoundary from "./Demos/ErrorBoundary";
+import CustomButton from "./Demos/ForwardingRefs";
+import HOCTestComponent from "./Demos/HOCTestComponent";
 import HooksDemo from "./Demos/HooksDemo";
 import LazyLoading from "./Demos/LazyLoadingDemo";
 import ProductTableDemo from "./ProductTableDemo/ProductTableDemo";
 
 export default class App extends React.Component<any, any> {
+  buttonRefs = React.createRef<HTMLButtonElement>();
+  hocInput = React.createRef<HTMLInputElement>();
 
+  hocProps: any = { testProp1: 'Hello, World!' };
   constructor(props: any) {
     super(props);
     this.state = {
       theme: 'dark',
-      lang: 'en'
+      lang: 'en',
+      hocProps: this.hocProps
     };
     this.updateProviders = this.updateProviders.bind(this);
   }
 
   updateProviders(newTheme: string, newLang: string) {
-    console.warn("Update providers: ", newTheme, ' : ', newLang);
     this.setState({
       theme: newTheme,
-      lang: newLang
+      lang: newLang,
+      hocProps: this.hocProps
     })
+  }
+
+  componentDidMount() {
+    console.warn("Button refs: ", this.buttonRefs);
+    if (this.buttonRefs.current)
+      this.buttonRefs.current.onclick = (ev: any) => { console.warn("Clicked button"); }
+
   }
 
   render() {
@@ -58,6 +71,12 @@ export default class App extends React.Component<any, any> {
               </li>
               <li>
                 <Link to="/hooks">Hooks</Link>
+              </li>
+              <li>
+                <Link to="/forward-refs">Forward Refs</Link>
+              </li>
+              <li>
+                <Link to="/hoc">Higher order components</Link>
               </li>
             </ul>
           </nav>
@@ -98,19 +117,30 @@ export default class App extends React.Component<any, any> {
             <Route path="/error-demo">
               test
               <ErrorBoundary>
-                {{one: 'one', two: 'two', thre: 'three'}}
+                {{ one: 'one', two: 'two', thre: 'three' }}
                 <ProductTableDemo></ProductTableDemo>
               </ErrorBoundary>
             </Route>
             <Route path="/hooks">
               <HooksDemo></HooksDemo>
             </Route>
+            <Route path="/forward-refs">
+              <CustomButton ref={this.buttonRefs}>Click me</CustomButton>
+            </Route>
+            <Route path="/hoc">
+              <label htmlFor="HOC-props">Enter a property to add to the test component: </label>
+              <input id="HOC-props" ref={this.hocInput} />
+
+              <button onClick={() => { this.setState((state: any) => ({ ...state, hocProps: { newProp: this.hocInput.current ? this.hocInput.current.value : '', ...this.hocProps } })); console.warn("added props: ", this.hocProps); }}>Add property</button>
+              {JSON.stringify(this.state.hocProps)}
+              <HOCTestComponent {...this.state.hocProps}></HOCTestComponent>
+            </Route>
             <Route path="/">
               <Home />
             </Route>
           </Switch>
         </div>
-      </Router>
+      </Router >
     );
   }
 }
