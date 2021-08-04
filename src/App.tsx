@@ -14,6 +14,7 @@ import HOCTestComponent from "./Demos/HOCTestComponent";
 import HooksDemo from "./Demos/HooksDemo";
 import LazyLoading from "./Demos/LazyLoadingDemo";
 import ProductTableDemo from "./ProductTableDemo/ProductTableDemo";
+import LoginForm from './Components/Login/login';
 
 export default class App extends React.Component<any, any> {
   buttonRefs = React.createRef<HTMLButtonElement>();
@@ -49,34 +50,37 @@ export default class App extends React.Component<any, any> {
     return (
       <Router>
         <div>
-          <nav>
+          <nav className="route-nav">
             <ul>
-              <li>
+              <li className="route-nav__item">
                 <Link to="/">Home</Link>
               </li>
-              <li>
+              <li className="route-nav__item">
                 <Link to="/axe">Accesibility</Link>
               </li>
-              <li>
+              <li className="route-nav__item">
                 <Link to="/lazy-loading">Lazy Loading</Link>
               </li>
-              <li>
+              <li className="route-nav__item">
                 <Link to="/context">Context</Link>
               </li>
-              <li>
+              <li className="route-nav__item">
                 <Link to="/error-demo">ErrorDemo</Link>
               </li>
-              <li>
+              <li className="route-nav__item">
                 <Link to="/product-table-demo">Product Table Demo</Link>
               </li>
-              <li>
+              <li className="route-nav__item">
                 <Link to="/hooks">Hooks</Link>
               </li>
-              <li>
+              <li className="route-nav__item">
                 <Link to="/forward-refs">Forward Refs</Link>
               </li>
-              <li>
+              <li className="route-nav__item">
                 <Link to="/hoc">Higher order components</Link>
+              </li>
+              <li className="route-nav__item">
+                <Link to="/login">Login</Link>
               </li>
             </ul>
           </nav>
@@ -110,7 +114,7 @@ export default class App extends React.Component<any, any> {
               <GlobalProvider>
                 <ContextDemoComponent updateProviders={this.updateProviders}>
                   Providers update from state
-                  </ContextDemoComponent>
+                </ContextDemoComponent>
               </GlobalProvider>
 
             </Route>
@@ -134,6 +138,9 @@ export default class App extends React.Component<any, any> {
               <button onClick={() => { this.setState((state: any) => ({ ...state, hocProps: { newProp: this.hocInput.current ? this.hocInput.current.value : '', ...this.hocProps } })); console.warn("added props: ", this.hocProps); }}>Add property</button>
               {JSON.stringify(this.state.hocProps)}
               <HOCTestComponent {...this.state.hocProps}></HOCTestComponent>
+            </Route>
+            <Route path="/login">
+              <LoginForm />
             </Route>
             <Route path="/">
               <Home />

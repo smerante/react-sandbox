@@ -1,0 +1,14 @@
+.form-input {
+    display: block;
+    width: 300px;
+    margin: 16px auto;
+
+    &__label {
+        display: block;
+    }
+    &__input {
+        display: block;
+        width: 100%;
+        padding: 4px;
+    }
+}

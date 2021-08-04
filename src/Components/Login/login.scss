@@ -1,0 +1,41 @@
+.login-form {
+    position: relative;
+    display: block;
+    min-width: 350px;
+    max-width: 80%;
+
+    padding: 16px;
+    margin: 32px auto;
+
+    border: 1px solid gray;
+    border-radius: 10px;
+    box-shadow: 0px 3px 12px 5px #0000007a;
+
+    &__title {
+        text-align: center;
+        font-size: 1.5rem;
+        color: #5a5a5a;
+        margin: 0px 0px 100px 0px;
+    }
+
+    &__image-face,
+    &__image-eyes,
+    &__image-paws {
+        position: absolute;
+        margin: 32px 0px;
+        left: calc(50% - 100px);
+    }
+    &__image-eyes,
+    &__image-paws {
+        transition: transform ease-in-out 0.25s;
+    }
+
+    &__image-paws {
+        left: calc(50% - 100px);
+        top: 80px;
+    }
+    &__image-paws + &__image-paws {
+        left: calc(50% + 48px);
+        top: 80px;
+    }
+}
